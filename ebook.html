@@ -4,11 +4,12 @@
 	<title>Poker Tutorial</title>
 	<meta charset="UTF-8" />
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script src="transition.js"></script>
 	<link rel="stylesheet" type="text/css" href="style.css">
    
 	<script type="text/javascript">
 
-		// 2-dim. array mit möglichen kombinationen aus farbe (1.dim) + werte (2.dim)
+		// 2-dim. array with all possible combinations of "farben"(4) and "werte"(13)
 		var farben = new Array("spades", "clubs", "hearts", "diamonds");
 		var werte = new Array("two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "jack", "queen", "king", "ace");
 		for(var i=0; i<farben.length; i++){
@@ -17,28 +18,28 @@
 			farben[tmp] = werte;
 		}
            
-        
-        
-		(function(k){k.transit={version:"0.9.9",propertyMap:{marginLeft:"margin",marginRight:"margin",marginBottom:"margin",marginTop:"margin",paddingLeft:"padding",paddingRight:"padding",paddingBottom:"padding",paddingTop:"padding"},enabled:true,useTransitionEnd:false};var d=document.createElement("div");var q={};function b(v){if(v in d.style){return v}var u=["Moz","Webkit","O","ms"];var r=v.charAt(0).toUpperCase()+v.substr(1);if(v in d.style){return v}for(var t=0;t<u.length;++t){var s=u[t]+r;if(s in d.style){return s}}}function e(){d.style[q.transform]="";d.style[q.transform]="rotateY(90deg)";return d.style[q.transform]!==""}var a=navigator.userAgent.toLowerCase().indexOf("chrome")>-1;q.transition=b("transition");q.transitionDelay=b("transitionDelay");q.transform=b("transform");q.transformOrigin=b("transformOrigin");q.transform3d=e();var i={transition:"transitionEnd",MozTransition:"transitionend",OTransition:"oTransitionEnd",WebkitTransition:"webkitTransitionEnd",msTransition:"MSTransitionEnd"};var f=q.transitionEnd=i[q.transition]||null;for(var p in q){if(q.hasOwnProperty(p)&&typeof k.support[p]==="undefined"){k.support[p]=q[p]}}d=null;k.cssEase={_default:"ease","in":"ease-in",out:"ease-out","in-out":"ease-in-out",snap:"cubic-bezier(0,1,.5,1)",easeOutCubic:"cubic-bezier(.215,.61,.355,1)",easeInOutCubic:"cubic-bezier(.645,.045,.355,1)",easeInCirc:"cubic-bezier(.6,.04,.98,.335)",easeOutCirc:"cubic-bezier(.075,.82,.165,1)",easeInOutCirc:"cubic-bezier(.785,.135,.15,.86)",easeInExpo:"cubic-bezier(.95,.05,.795,.035)",easeOutExpo:"cubic-bezier(.19,1,.22,1)",easeInOutExpo:"cubic-bezier(1,0,0,1)",easeInQuad:"cubic-bezier(.55,.085,.68,.53)",easeOutQuad:"cubic-bezier(.25,.46,.45,.94)",easeInOutQuad:"cubic-bezier(.455,.03,.515,.955)",easeInQuart:"cubic-bezier(.895,.03,.685,.22)",easeOutQuart:"cubic-bezier(.165,.84,.44,1)",easeInOutQuart:"cubic-bezier(.77,0,.175,1)",easeInQuint:"cubic-bezier(.755,.05,.855,.06)",easeOutQuint:"cubic-bezier(.23,1,.32,1)",easeInOutQuint:"cubic-bezier(.86,0,.07,1)",easeInSine:"cubic-bezier(.47,0,.745,.715)",easeOutSine:"cubic-bezier(.39,.575,.565,1)",easeInOutSine:"cubic-bezier(.445,.05,.55,.95)",easeInBack:"cubic-bezier(.6,-.28,.735,.045)",easeOutBack:"cubic-bezier(.175, .885,.32,1.275)",easeInOutBack:"cubic-bezier(.68,-.55,.265,1.55)"};k.cssHooks["transit:transform"]={get:function(r){return k(r).data("transform")||new j()},set:function(s,r){var t=r;if(!(t instanceof j)){t=new j(t)}if(q.transform==="WebkitTransform"&&!a){s.style[q.transform]=t.toString(true)}else{s.style[q.transform]=t.toString()}k(s).data("transform",t)}};k.cssHooks.transform={set:k.cssHooks["transit:transform"].set};if(k.fn.jquery<"1.8"){k.cssHooks.transformOrigin={get:function(r){return r.style[q.transformOrigin]},set:function(r,s){r.style[q.transformOrigin]=s}};k.cssHooks.transition={get:function(r){return r.style[q.transition]},set:function(r,s){r.style[q.transition]=s}}}n("scale");n("translate");n("rotate");n("rotateX");n("rotateY");n("rotate3d");n("perspective");n("skewX");n("skewY");n("x",true);n("y",true);function j(r){if(typeof r==="string"){this.parse(r)}return this}j.prototype={setFromString:function(t,s){var r=(typeof s==="string")?s.split(","):(s.constructor===Array)?s:[s];r.unshift(t);j.prototype.set.apply(this,r)},set:function(s){var r=Array.prototype.slice.apply(arguments,[1]);if(this.setter[s]){this.setter[s].apply(this,r)}else{this[s]=r.join(",")}},get:function(r){if(this.getter[r]){return this.getter[r].apply(this)}else{return this[r]||0}},setter:{rotate:function(r){this.rotate=o(r,"deg")},rotateX:function(r){this.rotateX=o(r,"deg")},rotateY:function(r){this.rotateY=o(r,"deg")},scale:function(r,s){if(s===undefined){s=r}this.scale=r+","+s},skewX:function(r){this.skewX=o(r,"deg")},skewY:function(r){this.skewY=o(r,"deg")},perspective:function(r){this.perspective=o(r,"px")},x:function(r){this.set("translate",r,null)},y:function(r){this.set("translate",null,r)},translate:function(r,s){if(this._translateX===undefined){this._translateX=0}if(this._translateY===undefined){this._translateY=0}if(r!==null&&r!==undefined){this._translateX=o(r,"px")}if(s!==null&&s!==undefined){this._translateY=o(s,"px")}this.translate=this._translateX+","+this._translateY}},getter:{x:function(){return this._translateX||0},y:function(){return this._translateY||0},scale:function(){var r=(this.scale||"1,1").split(",");if(r[0]){r[0]=parseFloat(r[0])}if(r[1]){r[1]=parseFloat(r[1])}return(r[0]===r[1])?r[0]:r},rotate3d:function(){var t=(this.rotate3d||"0,0,0,0deg").split(",");for(var r=0;r<=3;++r){if(t[r]){t[r]=parseFloat(t[r])}}if(t[3]){t[3]=o(t[3],"deg")}return t}},parse:function(s){var r=this;s.replace(/([a-zA-Z0-9]+)\((.*?)\)/g,function(t,v,u){r.setFromString(v,u)})},toString:function(t){var s=[];for(var r in this){if(this.hasOwnProperty(r)){if((!q.transform3d)&&((r==="rotateX")||(r==="rotateY")||(r==="perspective")||(r==="transformOrigin"))){continue}if(r[0]!=="_"){if(t&&(r==="scale")){s.push(r+"3d("+this[r]+",1)")}else{if(t&&(r==="translate")){s.push(r+"3d("+this[r]+",0)")}else{s.push(r+"("+this[r]+")")}}}}}return s.join(" ")}};function m(s,r,t){if(r===true){s.queue(t)}else{if(r){s.queue(r,t)}else{t()}}}function h(s){var r=[];k.each(s,function(t){t=k.camelCase(t);t=k.transit.propertyMap[t]||k.cssProps[t]||t;t=c(t);if(k.inArray(t,r)===-1){r.push(t)}});return r}function g(s,v,x,r){var t=h(s);if(k.cssEase[x]){x=k.cssEase[x]}var w=""+l(v)+" "+x;if(parseInt(r,10)>0){w+=" "+l(r)}var u=[];k.each(t,function(z,y){u.push(y+" "+w)});return u.join(", ")}k.fn.transition=k.fn.transit=function(z,s,y,C){var D=this;var u=0;var w=true;if(typeof s==="function"){C=s;s=undefined}if(typeof y==="function"){C=y;y=undefined}if(typeof z.easing!=="undefined"){y=z.easing;delete z.easing}if(typeof z.duration!=="undefined"){s=z.duration;delete z.duration}if(typeof z.complete!=="undefined"){C=z.complete;delete z.complete}if(typeof z.queue!=="undefined"){w=z.queue;delete z.queue}if(typeof z.delay!=="undefined"){u=z.delay;delete z.delay}if(typeof s==="undefined"){s=k.fx.speeds._default}if(typeof y==="undefined"){y=k.cssEase._default}s=l(s);var E=g(z,s,y,u);var B=k.transit.enabled&&q.transition;var t=B?(parseInt(s,10)+parseInt(u,10)):0;if(t===0){var A=function(F){D.css(z);if(C){C.apply(D)}if(F){F()}};m(D,w,A);return D}var x={};var r=function(H){var G=false;var F=function(){if(G){D.unbind(f,F)}if(t>0){D.each(function(){this.style[q.transition]=(x[this]||null)})}if(typeof C==="function"){C.apply(D)}if(typeof H==="function"){H()}};if((t>0)&&(f)&&(k.transit.useTransitionEnd)){G=true;D.bind(f,F)}else{window.setTimeout(F,t)}D.each(function(){if(t>0){this.style[q.transition]=E}k(this).css(z)})};var v=function(F){this.offsetWidth;r(F)};m(D,w,v);return this};function n(s,r){if(!r){k.cssNumber[s]=true}k.transit.propertyMap[s]=q.transform;k.cssHooks[s]={get:function(v){var u=k(v).css("transit:transform");return u.get(s)},set:function(v,w){var u=k(v).css("transit:transform");u.setFromString(s,w);k(v).css({"transit:transform":u})}}}function c(r){return r.replace(/([A-Z])/g,function(s){return"-"+s.toLowerCase()})}function o(s,r){if((typeof s==="string")&&(!s.match(/^[\-0-9\.]+$/))){return s}else{return""+s+r}}function l(s){var r=s;if(k.fx.speeds[r]){r=k.fx.speeds[r]}return o(r,"ms")}k.transit.getTransitionValue=g})(jQuery);
-        
-        function animateCards(i, number, x, y, spin, timeAnimate, timeIntterval){
+             
+		// "fly-in" effect. uses transition.js
+        function animateCards(i, number, x, y, spin, timeAnimate, timeInterval){
 			var interval = setTimeout(function(){
-				$(".card"+number).transition({
+				$("#player"+i+" > img:nth-child("+number+")").transition({
+				//$(".card"+number).transition({
 					rotate: spin+'deg',
 					marginLeft: x+"%",
 					marginTop: y+"%"
 				},timeAnimate);
-			}, timeIntterval);
+			}, timeInterval);
 		}
         
+		// control popups. fadeIn popups and log it in array
         var popupsShown = new Array(false, false, false, false, false, false);
-                
-		function popup(n){
+        function popup(n){
 			$(".p"+n).fadeIn(400);
 			$(".p"+n).addClass("visible");
 			popupsShown[n] = true;
 		}
         
+		// choose random card out of 4*13=52 possible cards
 		function getRandomCard(){
 			var rnd1 = Math.floor(4*Math.random());			// ganze Zufallszahl zwischen 0 und 3	--> index für array "farben"
 			var rnd2 = Math.floor(12*Math.random());		// ganze Zufallszahl zwischen 0 und 11	--> index für array "werte"
@@ -47,22 +48,53 @@
 			return card;
 		}
         
-		function setupPlayers(n){
+		// card-positions of all players (max. 8) (--> 0-7)
+		var positioning = new Array();
+		positioning[0] = new Array(	47,39,180,
+									48,39,180);
+		positioning[1] = new Array(	23,37.6,200,
+									24,38,200);
+		positioning[2] = new Array(	12,23,270,
+									12,24,270);
+		positioning[3] = new Array(	24,9,340,
+									23,9.4,340);
+		positioning[4] = new Array(	48,8,360,
+									47,8,360);
+		positioning[5] = new Array(	73,9.4,380,
+									72,9,380);
+		positioning[6] = new Array(	83,24,90,
+									83,23,90);
+		positioning[7] = new Array(	72,38,160,
+									73,37.6,160);
+		
+		// register amount of players, give them cards
+		function setupPlayers(n, turned){
 			// n = Anzahl Spieler, muss zw. 2 und (aktuell) 6 liegen
 			for(var i=0; i<n; i++){
-				var rndCard1 = getRandomCard();
-				var rndCard2 = getRandomCard();
-				var player = "<div id=\"player" + i + "\" data-card1=\"" + rndCard1 + "\" data-card2=\"" + rndCard2 + "\"></div>";
+				var rndCard1;
+				var rndCard2;
+				if(turned == true){
+					rndCard1 = "_turned";
+					rndCard2 = "_turned";
+				}else{
+					rndCard1 = getRandomCard();
+					rndCard2 = getRandomCard();
+				}
+				var player = "<div id=\"player" + i + "\" class=\"player\" data-card1=\"" + rndCard1 + "\" data-card2=\"" + rndCard2 + "\"></div>";
 				var card1 = "<img src=\"./images/pokerkarten/" + rndCard1 + ".png\" alt=\"" + rndCard1 + "\" class=\"firstCard cards card1\" />";
 				var card2 = "<img src=\"./images/pokerkarten/" + rndCard2 + ".png\" alt=\"" + rndCard2 + "\" class=\"SecondCard cards card2\" />";
 				$("#players").append(player);
 				$("#player"+i).append(card1);
 				$("#player"+i).append(card2);
 				
-				animateCards(i,1,10,12,360,700,600);
-				animateCards(i,2,13,12,360,700,1000);
+				for(var j=0; j<2; j++){
+					var left = positioning[i][j*3];
+					var top = positioning[i][j*3+1];
+					var angle = positioning[i][j*3+2];
+					var delay = 1000*(i+1)+400*j;
+					animateCards(i,j+1,left,top,angle,700,delay);
+				}
 			}
-			
 		}
         
 		$(document).ready(function(){
@@ -77,9 +109,8 @@
             		$(popup).removeClass("visible")
             		$(popup).fadeOut(400);
             	}
-            	setupPlayers(1);
-            	//animateCards(1,10,12,360,700,600);
-                //animateCards(2,13,12,360,700,1000);
+            	setupPlayers(8, true);
+            	
             });
        
             	// -- continue flow / animation
@@ -91,31 +122,33 @@
     </script>
 </head>
 <body>
-<div id="popupBack"></div>
-<div class="popup p1 visible">
-    <div>
-       <p>
-           Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,
-       </p>
-    </div>
-</div>
-<div class="popup p2 visible">
-    <div>
-       <p>
-           blsa
-       </p>
-    </div>
-</div>
-
-<div id="players">
-	<!--<div id="player1" data-card1="" data-card2="">
-		<img src="./images/assHerz.png" class="cards card1">
-		<img src="./images/assKaro.png" class="cards card2">
+	<div id="wrapper">
+		<div id="popupBack"></div>
+		<div class="popup p1 visible">
+		    <div>
+		       <p>
+		           Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,
+		       </p>
+		    </div>
+		</div>
+		<div class="popup p2 visible">
+		    <div>
+		       <p>
+		           blsa
+		       </p>
+		    </div>
+		</div>
+	
+		<div id="players">
+			<!--<div id="player1" data-card1="" data-card2="">
+				<img src="./images/assHerz.png" class="cards card1">
+				<img src="./images/assKaro.png" class="cards card2">
+			</div>
+			<div id="player2" data-card1="" data-card2=""></div>
+			<div id="player3" data-card1="" data-card2=""></div>
+			<div id="player4" data-card1="" data-card2=""></div>
+			<div id="player5" data-card1="" data-card2=""></div>-->
+		</div>
 	</div>
-	<div id="player2" data-card1="" data-card2=""></div>
-	<div id="player3" data-card1="" data-card2=""></div>
-	<div id="player4" data-card1="" data-card2=""></div>
-	<div id="player5" data-card1="" data-card2=""></div>-->
-</div>
 </body>
 </html>
