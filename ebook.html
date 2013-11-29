@@ -96,6 +96,74 @@
 				}
 			}
 		}
+		
+		function setupChips(n, d){
+			// n=8, d=6
+			// in this implementation, d isn't yet relevant.
+			// Here we are playing with 5 different chip colors
+			var theChips = new Array();
+			theChips[0] = 10;	// weißen
+			theChips[1] = 8;	// rot
+			theChips[2] = 5;	// grün
+			theChips[3] = 3;	// blau
+			theChips[4] = 1;	// schwarz
+			
+			var positioning = new Array();
+			positioning[0] = new Array(10, 40);
+			positioning[1] = new Array(22, 35);
+			positioning[2] = new Array(44, 40);
+			positioning[3] = new Array(44, 40);
+			positioning[4] = new Array(44, 40);
+			positioning[5] = new Array(44, 40);
+			positioning[6] = new Array(44, 40);
+			positioning[7] = new Array(44, 40);
+			
+			
+			// for each player
+			for(var i=0; i<2/*n*/; i++){
+				var stack = "";
+				var row = 0;
+				var player_allchips = "<div class=\"playerchips\" id=\"chips_player" + i + "\"></div>";
+				// for each chip color = each stack of chips
+				for(var j=0; j<theChips.length; j++){
+					// for each chip in the stack
+					if(j>2)row = 1;
+					for(var k=0; k<theChips[j]; k++){
+						stack += "<img style=\"margin-top: " + (j*40-k-row*100) + "px; margin-left: " + (-row*35+k) + "px;\" class=\"chips\" src=\"images/pokerchips/scenario/chip" + j + ".png\" class=\"chipcolor" + j + "\" />";
+					}
+					
+				}
+				$("#chips").append(player_allchips);
+				$("#chips_player"+i).append(stack);
+				var ml = positioning[i][0] + "%";
+				var mt = positioning[i][1] + "%";
+				//$("#chips_player"+i).css({marginLeft: ml, marginTop: mt});
+			}
+			// n = Anzahl Spieler, muss zw. 2 und (aktuell) 6 liegen
+		}
+		
+		function setupMiddle(){
+			var middleCards = new Array();
+			var stackOf5 = "";
+			var middle = "<div id=\"middle\"></div>";
+			$("#players").append(middle);
+			for(var i=0; i<5; i++){
+				middleCards[i] = getRandomCard();
+				var rndCard = "";
+				if(i>2){
+					rndCard = "_turned";
+				}else{
+					rndCard = middleCards[i];
+				}
+				stackOf5 += "<img src=\"./images/pokerkarten/" + rndCard + ".png\" alt=\"" + rndCard + "\" class=\"middleCard\" />";
+			}
+			$("#middle").append(stackOf5);
+			setTimeout(function() {
+				$("#middle").fadeIn(1000);
+			}, 10000);
+			
+		}
+	
         
 		$(document).ready(function(){
            	//getRandomCard();
@@ -109,9 +177,16 @@
             		$(popup).removeClass("visible")
             		$(popup).fadeOut(400);
             	}
-            	setupPlayers(8, true);
+            	
+            	var amoutPlayers = 8;
+            	var chipDiversity = 6;
+            	setupPlayers(amoutPlayers, true);
+            	setupMiddle();
+            	
+            	//setupChips(amoutPlayers, chipDiversity);
             	
             });
+          
        
             	// -- continue flow / animation
             	
@@ -122,33 +197,21 @@
     </script>
 </head>
 <body>
-	<div id="wrapper">
-		<div id="popupBack"></div>
-		<div class="popup p1 visible">
-		    <div>
-		       <p>
-		           Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,
-		       </p>
-		    </div>
-		</div>
-		<div class="popup p2 visible">
-		    <div>
-		       <p>
-		           blsa
-		       </p>
-		    </div>
-		</div>
 	
+	<div id="wrapper">
 		<div id="players">
-			<!--<div id="player1" data-card1="" data-card2="">
-				<img src="./images/assHerz.png" class="cards card1">
-				<img src="./images/assKaro.png" class="cards card2">
-			</div>
-			<div id="player2" data-card1="" data-card2=""></div>
-			<div id="player3" data-card1="" data-card2=""></div>
-			<div id="player4" data-card1="" data-card2=""></div>
-			<div id="player5" data-card1="" data-card2=""></div>-->
+		
 		</div>
+		<div id="chips">
+		
+		</div>
+	</div>
+	<div class="popup p1 visible">
+	    <div>
+	       <p>
+	           Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,
+	       </p>
+	    </div>
 	</div>
 </body>
 </html>
